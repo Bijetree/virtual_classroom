@@ -17,10 +17,20 @@ from functools import lru_cache
 import nltk
 
 # Download necessary NLTK data
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('wordnet')
+#nltk.download('punkt')
+from nltk.data import find
 
+def safe_nltk_download(package):
+    try:
+        find(package)
+    except LookupError:
+        nltk.download(package)
+
+safe_nltk_download('tokenizers/punkt')
+safe_nltk_download('corpora/stopwords')
+safe_nltk_download('corpora/wordnet')
 # Load NLP model
 #bert_model = SentenceTransformer("paraphrase-MiniLM-L12-v2")
 
