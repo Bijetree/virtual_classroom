@@ -10,7 +10,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
+#from sentence_transformers import SentenceTransformer
 from Levenshtein import ratio as levenshtein_ratio
 from collections import Counter
 from functools import lru_cache
@@ -22,7 +22,7 @@ nltk.download('wordnet')
 nltk.download('punkt')
 
 # Load NLP model
-bert_model = SentenceTransformer("paraphrase-MiniLM-L12-v2")
+#bert_model = SentenceTransformer("paraphrase-MiniLM-L12-v2")
 
 # Initialize utilities
 stop_words = set(stopwords.words("english"))
@@ -100,6 +100,8 @@ def highlight_text(original, submitted, matching_phrases):
 
 # Compare two texts
 def compare_texts(text1, text2):
+    from sentence_transformers import SentenceTransformer
+    bert_model = SentenceTransformer("paraphrase-MiniLM-L12-v2")
     """Compares texts and returns similarity score with highlighted differences."""
     if not text1 or not text2:
         return 0.0, text1, text2
