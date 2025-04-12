@@ -10,27 +10,16 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-#from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer
 from Levenshtein import ratio as levenshtein_ratio
 from collections import Counter
 from functools import lru_cache
 import nltk
 
 # Download necessary NLTK data
-#nltk.download('stopwords')
-#nltk.download('wordnet')
-#nltk.download('punkt')
-from nltk.data import find
-
-def safe_nltk_download(package):
-    try:
-        find(package)
-    except LookupError:
-        nltk.download(package)
-
-safe_nltk_download('tokenizers/punkt')
-safe_nltk_download('corpora/stopwords')
-safe_nltk_download('corpora/wordnet')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('punkt')
 # Load NLP model
 #bert_model = SentenceTransformer("paraphrase-MiniLM-L12-v2")
 
@@ -110,8 +99,8 @@ def highlight_text(original, submitted, matching_phrases):
 
 # Compare two texts
 def compare_texts(text1, text2):
-    from sentence_transformers import SentenceTransformer
-    bert_model = SentenceTransformer("paraphrase-MiniLM-L12-v2")
+    #from sentence_transformers import SentenceTransformer
+    #bert_model = SentenceTransformer("paraphrase-MiniLM-L12-v2")
     """Compares texts and returns similarity score with highlighted differences."""
     if not text1 or not text2:
         return 0.0, text1, text2
